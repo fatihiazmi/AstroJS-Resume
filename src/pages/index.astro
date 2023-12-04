@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import Portrait from '../assets/me.jpg'
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const personalInfo = [
+	{id: '1', detail: 'Programmer', icon: ''},
+	{id: '2', detail: 'Selangor, Malaysia', icon: ''},
+	{id: '3', detail: 'fatihiazmi@gmail.com', icon: ''},
+	{id: '4', detail: '+60174873211', icon: ''},
+]
+
+const skills = [
+    {id: '1', name: 'HTML', level: 'Advanced', status: 'success'},
+    {id: '2', name: 'CSS', level: 'Advanced', status: 'success'},
+    {id: '3', name: 'JavaScript', level: 'Intermediate', status: 'warning'},
+    {id: '4', name: 'PHP/Laravel', level: 'Intermediate', status: 'warning'},
+    {id: '5', name: 'Figma', level: 'Advanced', status: 'success'},
+    {id: '6', name: 'Photoshop', level: 'Intermediate', status: 'warning'},
+];
+const languages = [
+    {id: '1', name: 'English', level: 'Advanced', status: 'success'},
+    {id: '2', name: 'Malay', level: 'Native', status: 'success'},
+    {id: '3', name: 'Arabic', level: 'Intermediate', status: 'warning'},
+    {id: '4', name: 'Korean', level: 'Basic', status: 'info'}
+];
+const expDetails = [
+    {id: '1', desc: 'Analyze user needs and design software solutions.'},
+    {id: '2', desc: ' Code high-performance programs using different frameworks.'},
+    {id: '3', desc: ' Collaborate with other teams in PizzaHut microsite project.'},
+    {id: '4', desc: ' Supporting teammates in developing, designing and debugging a content website for Gentari.'},
+    {id: '5', desc: '  Developing web automation for generating advertisement previews.'},
+    {id: '6', desc: ' Providing technical support in programmatic advertising for clients such as BMW USA, MINI USA, AMEX AU and Spotify'},
+    {id: '7', desc: '  Guiding juniors through their onboarding session.'},
+];
+const academicDetails = [
+    {id: '1', desc: 'Degree in Software Engineering'},
+    {id: '2', desc: 'GPA: 3.35'},
+    {id: '3', desc: 'Wrote a Thesis on: Augmented Reality in History'},
+    {id: '4', desc: "Awarded Dean's List in 2020"},
+    {id: '5', desc: "Awarded Dean's List in 2021"},
+];
+---
+
+<Layout title="Interactive Resume">
+	<main class="flex flex-col items-center">
+		<Card>
+			<figure class="h-[18rem] relative">
+				<Image src={Portrait} alt='portrait of me'/>
+				<!-- <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Avatar" /> -->
+				<h2 class="ps-4 pb-4 card-title absolute left-0 bottom-0 text-gray-800 text-3xl">Fatihi Azmi</h2>
+			</figure>
+			<div class="card-body ps-4 pb-4">
+				<div class="personal-info">
+					<ul>
+						{personalInfo.map(info => <h2 class="font-semibold" id={info.id}>{info.detail}</h2>)}
+					</ul>
+				</div>
+				<hr>
+				<div class="pb-4">
+					<h2 class="card-title font-bold">Skills</h2>
+					<ul>
+						{skills.map(skill => <li class="font-medium" id={skill.id}>{skill.name} - <span class=`badge badge-${skill.status} badge-outline`>{skill.level}</span></li>)}
+					</ul>
+				</div>
+				<div class="pb-4">
+					<h2 class="card-title font-bold">Languages</h2>
+					<ul>
+						{languages.map(language => <li class="font-medium" id={language.id}>{language.name} - <span class=`badge badge-${language.status} badge-outline`>{language.level}</span></li>)}
+					</ul>
+				</div>
+				
+			</div>
+		</Card>
+		<Card>
+			<div class="card-body ps-4 pb-4">
+				<div class="experience">
+					<h1 class="card-title mb-4">Work Experience</h1>
+					<h2 class="font-semibold my-4">Front End Developer / IPG MediaBrands Sdn. Bhd.</h2>
+					<h4 class="font-semibold text-gray-500 my-4">August 2021 - <span class="badge badge-success">PRESENT</span></h4>
+				</div>
+				<div class="experience-details">
+					<ul>
+						{expDetails.map(detail => <li class="my-4 font-medium">{detail.desc}</li>) }
+					</ul>
+				</div>
+				<hr>
+			</div>
+		</Card>
+		<Card>
+			<div class="card-body ps-4 pb-4">
+				<div class="education">
+					<h1 class="card-title mb-4">Academic History</h1>
+					<h2 class="font-semibold">Software Engineering | Universiti Pendidikan Sultan Idris</h2>
+					<h4 class="font-semibold text-gray-500 my-4">Sept 2017 - October 2021 <span class="badge badge-success">GRADUATED</span></h4>
+					<ul>
+						{academicDetails.map(detail => <li class="font-medium my-4" id={detail.id}>{detail.desc}</li>)}
+					</ul>
+				</div>
+			</div>
+		</Card>
+	</main>
+</Layout>
+
+<style>
+	hr{
+        border: 0;
+        border-top: 1px solid #6b6b6b;
+        margin: 20px 0;
+    }
+</style>
+
