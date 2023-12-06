@@ -1,14 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import Portrait from '../assets/me.jpg'
+import { Icon } from 'astro-icon';
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import CardPersonal from '../components/CardPersonal.astro';
+import CardWork from '../components/CardWork.astro';
+import CardAcademic from '../components/CardAcademic.astro';
 
 const personalInfo = [
-	{id: '1', detail: 'Programmer', icon: ''},
-	{id: '2', detail: 'Selangor, Malaysia', icon: ''},
-	{id: '3', detail: 'fatihiazmi@gmail.com', icon: ''},
-	{id: '4', detail: '+60174873211', icon: ''},
+	{id: '1', detail: 'Programmer', icon: 'briefcase-outline'},
+	{id: '2', detail: 'Selangor, Malaysia', icon: 'earth'},
+	{id: '3', detail: 'fatihiazmi@gmail.com', icon: 'email'},
+	{id: '4', detail: '+60174873211', icon: 'card-account-phone-outline'},
 ]
 
 const skills = [
@@ -44,17 +45,18 @@ const academicDetails = [
 ---
 
 <Layout title="Interactive Resume">
-	<main class="flex flex-col items-center">
-		<Card>
-			<figure class="h-[18rem] relative">
-				<Image src={Portrait} alt='portrait of me'/>
-				<!-- <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="Avatar" /> -->
-				<h2 class="ps-4 pb-4 card-title absolute left-0 bottom-0 text-gray-800 text-3xl">Fatihi Azmi</h2>
+		<CardPersonal>
+			<figure class="h-[18rem] md:h-[25rem] lg:h-[18rem] relative">
+				<!-- <img src="/me.jpg" alt="Avatar" /> -->
+				<div class="image bg-cover bg-[center_top_-2rem] md:bg-[center_top_-3rem]" style="background-image: url(/me.jpg);"></div>
+				<h2 class="ps-4 pb-4 card-title absolute left-0 bottom-0 text-gray-300 text-3xl">Fatihi Azmi</h2>
 			</figure>
 			<div class="card-body ps-4 pb-4">
 				<div class="personal-info">
 					<ul>
-						{personalInfo.map(info => <h2 class="font-semibold" id={info.id}>{info.detail}</h2>)}
+						{personalInfo.map(info => <div class="flex">
+							<Icon pack="mdi" name={info.icon} width="20px" /><h2 class="ms-4 font-semibold" id={info.id}>{info.detail}</h2>
+						</div>)}
 					</ul>
 				</div>
 				<hr>
@@ -72,8 +74,8 @@ const academicDetails = [
 				</div>
 				
 			</div>
-		</Card>
-		<Card>
+		</CardPersonal>
+		<CardWork>
 			<div class="card-body ps-4 pb-4">
 				<div class="experience">
 					<h1 class="card-title mb-4">Work Experience</h1>
@@ -85,11 +87,10 @@ const academicDetails = [
 						{expDetails.map(detail => <li class="my-4 font-medium">{detail.desc}</li>) }
 					</ul>
 				</div>
-				<hr>
 			</div>
-		</Card>
-		<Card>
-			<div class="card-body ps-4 pb-4">
+		</CardWork>
+		<CardAcademic>
+			<div class="card-body ps-4 pb-4 lg:pb-0">
 				<div class="education">
 					<h1 class="card-title mb-4">Academic History</h1>
 					<h2 class="font-semibold">Software Engineering | Universiti Pendidikan Sultan Idris</h2>
@@ -99,15 +100,23 @@ const academicDetails = [
 					</ul>
 				</div>
 			</div>
-		</Card>
-	</main>
+		</CardAcademic>
 </Layout>
 
-<style>
+<style lang="css">
 	hr{
         border: 0;
         border-top: 1px solid #6b6b6b;
         margin: 20px 0;
     }
+
+	.image{
+		width: 100%;
+		height: 100%;
+	}
+
+	[astro-icon]{
+		color: rgb(83, 183, 130);
+	}
 </style>
 
