@@ -12,6 +12,11 @@ const personalInfo = [
 	{id: '4', detail: '+60174873211', icon: 'card-account-phone-outline'},
 ]
 
+const socialInfo = [
+	{id: '1', href: 'https://www.linkedin.com/in/fatihiazmi', icon: 'linkedin'},
+	{id: '2', href: 'https://www.github.com/fatihiazmi', icon: 'github'}
+]
+
 const skills = [
     {id: '1', name: 'HTML', level: 'Advanced', status: 'success'},
     {id: '2', name: 'CSS', level: 'Advanced', status: 'success'},
@@ -60,6 +65,14 @@ const academicDetails = [
 					</ul>
 				</div>
 				<hr>
+				<div class="social">
+					<ul class="flex flex-row items-center justify-around">
+						{socialInfo.map(social => <a href={social.href} target="_blank">
+							<Icon pack="mdi" name={social.icon} width="20px" />
+						</a>)}
+					</ul>
+				</div>
+				<hr>
 				<div class="pb-4">
 					<h2 class="card-title font-bold">Skills</h2>
 					<ul>
@@ -80,7 +93,7 @@ const academicDetails = [
 				<div class="experience">
 					<h1 class="card-title mb-4">Work Experience</h1>
 					<h2 class="font-semibold my-4">Front End Developer / IPG MediaBrands Sdn. Bhd.</h2>
-					<h4 class="font-semibold text-gray-500 my-4">August 2021 - <span class="badge badge-success">PRESENT</span></h4>
+					<h4 class="font-semibold text-gray-500 my-4">August 2021 - <span class="badge badge-success badge-outline">PRESENT</span></h4>
 				</div>
 				<div class="experience-details">
 					<ul>
@@ -94,7 +107,7 @@ const academicDetails = [
 				<div class="education">
 					<h1 class="card-title mb-4">Academic History</h1>
 					<h2 class="font-semibold">Software Engineering | Universiti Pendidikan Sultan Idris</h2>
-					<h4 class="font-semibold text-gray-500 my-4">Sept 2017 - October 2021 <span class="badge badge-success">GRADUATED</span></h4>
+					<h4 class="font-semibold text-gray-500 my-4">Sept 2017 - October 2021 <span class="badge badge-success badge-outline">GRADUATED</span></h4>
 					<ul>
 						{academicDetails.map(detail => <li class="font-medium my-4" id={detail.id}>{detail.desc}</li>)}
 					</ul>
@@ -117,6 +130,23 @@ const academicDetails = [
 
 	[astro-icon]{
 		color: rgb(83, 183, 130);
+		transition: 0.5s;
+	}
+
+	[astro-icon]:hover{
+		cursor: pointer;
+		color: rgb(116, 228, 168);
+	}
+	.badge{
+		animation: 1s glow alternate infinite ease-in-out;
+	}
+	@keyframes glow {
+		0%{
+			box-shadow: 0px 0px 0px 0px;
+		}
+		100%{
+			box-shadow: 0px 0px 10px 0px;
+		}
 	}
 </style>
 
